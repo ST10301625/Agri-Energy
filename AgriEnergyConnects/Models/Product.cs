@@ -20,12 +20,12 @@ namespace AgriEnergyConnects.Models
         [Display(Name = "Production Date")]
         public DateTime ProductionDate { get; set; }
 
-        // 🔗 Link to Farmer
+        // Link to Farmer
 
         public int FarmerId { get; set; }
 
         [ForeignKey("FarmerId")]
-        [ValidateNever] // 🔒 Tell model binder to skip validation
+        [ValidateNever] 
         public Farmer Farmer { get; set; }
     }
 }

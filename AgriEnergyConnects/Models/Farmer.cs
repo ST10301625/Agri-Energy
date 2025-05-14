@@ -5,6 +5,7 @@ namespace AgriEnergyConnects.Models
 {
     public class Farmer
     {
+        // Farmers personal details 
         public int Id { get; set; }
 
         [Required]
@@ -24,7 +25,6 @@ namespace AgriEnergyConnects.Models
         [Display(Name = "Location")]
         public string? Location { get; set; }
 
-        // 🔗 Link to Identity User
         [Required]
         public string UserId { get; set; }
 
