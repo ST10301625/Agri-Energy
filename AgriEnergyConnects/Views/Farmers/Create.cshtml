@@ -1,0 +1,86 @@
+﻿@model FarmerCreateViewModel
+
+@{
+    ViewData["Title"] = "Create Farmer";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg border-0">
+        <!-- 💛 Gold Header -->
+        <div class="card-header bg-gold text-dark">
+            <h3 class="mb-0">👨‍🌾 Create Farmer</h3>
+        </div>
+
+        <!-- 🤍 Form body with white background and dark text -->
+        <div class="card-body bg-white text-dark">
+            <form id="farmerForm" method="post">
+                <input type="hidden" id="selectedUserId" name="UserId" />
+
+                <!-- 🧑 Select Farmer Dropdown -->
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Select Farmer</label>
+                    <select class="form-select" id="userDropdown">
+                        <option value="">-- Select --</option>
+                        @foreach (var user in Model.Users)
+                        {
+                            <option value="@user.Value" data-email="@user.Text" data-fullname="@user.Text.Split('@')[0]">
+                                @user.Text
+                            </option>
+                        }
+                    </select>
+                    <div class="text-danger small" id="userError"></div>
+                </div>
+
+                <!-- 👤 Readonly Fields -->
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Full Name</label>
+                    <input class="form-control bg-light text-dark" id="fullName" readonly />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Email</label>
+                    <input class="form-control bg-light text-dark" id="email" readonly />
+                </div>
+
+                <!-- 📞 Phone & Location -->
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Phone Number</label>
+                    <input class="form-control" name="PhoneNumber" value="000-000-0000" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Location</label>
+                    <input class="form-control" name="Location" value="Unknown Location" />
+                </div>
+
+                <!-- ✅ Submit -->
+                <button type="submit" class="btn btn-gold">✅ Create</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById("userDropdown").addEventListener("change", function () {
+            const option = this.options[this.selectedIndex];
+            document.getElementById("fullName").value = option.dataset.fullname || "";
+            document.getElementById("email").value = option.value ? option.dataset.email : "";
+            document.getElementById("selectedUserId").value = option.value;
+        });
+
+        document.getElementById("farmerForm").addEventListener("submit", function (e) {
+            if (!document.getElementById("selectedUserId").value) {
+                e.preventDefault();
+                document.getElementById("userError").textContent = "❗ Please select a farmer";
+                document.getElementById("userDropdown").classList.add("is-invalid");
+            }
+        });
+    </script>
+
+    <style>
+        .is-invalid {
+            border-color: #dc3545;
+        }
+    </style>
+}

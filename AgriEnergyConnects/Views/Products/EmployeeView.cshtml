@@ -1,0 +1,75 @@
+﻿@model AgriEnergyConnects.Models.ViewModels.ProductFilterViewModel
+
+@{
+    ViewData["Title"] = "All Products";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg border-0">
+        <div class="card-header bg-gold text-dark">
+            <h3 class="mb-0">📊 Products from Farmers</h3>
+        </div>
+        <div class="card-body bg-white text-dark">
+            <form method="get">
+                <div class="row">
+                    <!-- Category Filter -->
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">Category</label>
+                        <select name="category" class="form-select">
+                            <option value="">All</option>
+                            @foreach (var cat in Model.Categories)
+                            {
+                                var isSelected = cat == Model.Category ? "selected" : null;
+                                <option value="@cat" selected="@isSelected">@cat</option>
+                            }
+                        </select>
+                    </div>
+
+                    <!-- Start Date Filter -->
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">Start Date</label>
+                        <input type="date" name="startDate" class="form-control"
+                               value="@(Model.StartDate?.ToString("yyyy-MM-dd"))" />
+                    </div>
+
+                    <!-- End Date Filter -->
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">End Date</label>
+                        <input type="date" name="endDate" class="form-control"
+                               value="@(Model.EndDate?.ToString("yyyy-MM-dd"))" />
+                    </div>
+
+                    <!-- Filter Button -->
+                    <div class="col-md-3 mb-3 d-flex align-items-end">
+                        <button type="submit" class="btn btn-gold w-100">🔍 Filter</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Filtered Results Table -->
+    <div class="mt-4">
+        <table class="table table-bordered table-hover shadow-sm">
+            <thead class="table-dark text-light">
+                <tr>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Production Date</th>
+                    <th>Farmer</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var product in Model.Products)
+                {
+                    <tr>
+                        <td>@product.Name</td>
+                        <td>@product.Category</td>
+                        <td>@product.ProductionDate.ToString("yyyy/MM/dd")</td>
+                        <td>@product.Farmer?.FullName</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

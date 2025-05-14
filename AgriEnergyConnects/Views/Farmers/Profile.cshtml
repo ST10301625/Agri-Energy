@@ -1,0 +1,75 @@
+﻿@model AgriEnergyConnects.Models.ViewModels.FarmerProfileViewModel
+
+@{
+    ViewData["Title"] = "Your Profile";
+}
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["Success"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg border-0">
+        <!-- 💛 Header -->
+        <div class="card-header bg-gold text-dark">
+            <h3 class="mb-0">👤 Your Profile</h3>
+        </div>
+
+        <!-- 🧾 Body -->
+        <div class="card-body bg-white text-dark">
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- 📋 Profile Details -->
+                    <h5 class="border-bottom pb-2 mb-3 fw-bold text-primary">Profile Details</h5>
+                    <dl class="row">
+                        <dt class="col-sm-4">Full Name</dt>
+                        <dd class="col-sm-8">@Model.FullName</dd>
+
+                        <dt class="col-sm-4">Phone Number</dt>
+                        <dd class="col-sm-8">@(Model.PhoneNumber ?? "Not provided")</dd>
+
+                        <dt class="col-sm-4">Email</dt>
+                        <dd class="col-sm-8">@Model.Email</dd>
+
+                        <dt class="col-sm-4">Location</dt>
+                        <dd class="col-sm-8">@(Model.Location ?? "Not provided")</dd>
+                    </dl>
+
+                    <!-- ✏️ Update Form -->
+                    <h5 class="border-bottom pb-2 mt-5 mb-3 fw-bold text-primary">Update Profile</h5>
+                    <form asp-action="UpdateProfile" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <input type="hidden" asp-for="FullName" />
+                        <input type="hidden" asp-for="Email" />
+
+                        <div class="mb-3">
+                            <label asp-for="PhoneNumber" class="form-label fw-semibold"></label>
+                            <input asp-for="PhoneNumber" class="form-control bg-light text-dark" />
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Location" class="form-label fw-semibold"></label>
+                            <input asp-for="Location" class="form-control bg-light text-dark" />
+                            <span asp-validation-for="Location" class="text-danger"></span>
+                        </div>
+
+                        <div class="mt-4">
+                            <button type="submit" class="btn btn-gold">💾 Save Changes</button>
+                            <a asp-action="Profile" class="btn btn-outline-secondary ms-2">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<AgriEnergyConnects.Models.Farmer>
+
+@{
+    ViewData["Title"] = "Farmers";
+}
+
+<h1 class="text-dark">Farmers</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-gold mb-4">➕ Add New Farmer</a>
+</p>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100 bg-dark text-light border-gold shadow">
+                <div class="card-header border-bottom border-gold">
+                    <h5 class="card-title mb-0">@item.FullName</h5>
+                </div>
+                <div class="card-body">
+                    <p class="mb-1"><strong>📞 Phone:</strong> @item.PhoneNumber</p>
+                    <p class="mb-1"><strong>📧 Email:</strong> @item.Email</p>
+                    <p class="mb-1"><strong>📍 Location:</strong> @item.Location</p>
+                    <p class="mb-1">
+                        <strong>👤 User Email:</strong>
+                        @if (item.User != null)
+                        {
+                            <span>@item.User.Email</span>
+                        }
+                        else
+                        {
+                            <span class="text-muted">No User Assigned</span>
+                        }
+                    </p>
+                </div>
+                <div class="card-footer bg-transparent border-top border-gold text-end">
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-light me-1">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-light me-1">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

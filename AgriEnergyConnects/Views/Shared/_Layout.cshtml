@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AgriEnergyConnects</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/AgriEnergyConnects.styles.css" asp-append-version="true" />
+
+    <style>
+        .navbar {
+            background-color: #1a1a2e; /* Deep navy */
+        }
+
+        .navbar-brand,
+        .navbar-nav .nav-link {
+            color: #f5f5f5 !important;
+        }
+
+            .navbar-nav .nav-link:hover {
+                color: #ffd700 !important; /* Gold hover */
+                background-color: transparent;
+                border-bottom: 2px solid #ffd700;
+            }
+
+        .navbar-toggler {
+            border-color: #f5f5f5;
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 215, 0, 0.7%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+        }
+
+        .footer {
+            background-color: #1a1a2e;
+            color: #dcdcdc;
+        }
+
+            .footer a {
+                color: #f5f5f5;
+                text-decoration: none;
+            }
+
+                .footer a:hover {
+                    color: #ffd700;
+                }
+
+        /* Optional: Add transition for smooth effect */
+        .nav-link {
+            transition: all 0.3s ease-in-out;
+        }
+
+        .footer,
+        .navbar {
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark border-bottom mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand fw-bold" asp-area="" asp-controller="Home" asp-action="Index">AgriEnergyConnects</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        
+
+                        @if (User.IsInRole("Employee"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Farmers" asp-action="Index">Farmers</a>
+                            </li>
+                        }
+
+                        @if (User.IsInRole("Farmer"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Farmers" asp-action="Profile">Farmers Profile</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Products" asp-action="Index">Products</a>
+                            </li>
+                        }
+
+                        @if (User.IsInRole("Employee"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Products" asp-action="EmployeeView">All Products</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="AppRoles" asp-action="Index">Roles</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <partial name="_LoginPartial" />
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted py-3">
+        <div class="container text-center">
+            &copy; 2025 - AgriEnergyConnects - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

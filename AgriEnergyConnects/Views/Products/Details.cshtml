@@ -1,0 +1,33 @@
+﻿@model AgriEnergyConnects.Models.Product
+
+@{
+    ViewData["Title"] = "Product Details";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg border-0">
+        <div class="card-header bg-gold text-dark">
+            <h3 class="mb-0">📦 Product Details</h3>
+        </div>
+        <div class="card-body bg-white text-dark">
+            <dl class="row">
+                <dt class="col-sm-4">Name</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.Name)</dd>
+
+                <dt class="col-sm-4">Category</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.Category)</dd>
+
+                <dt class="col-sm-4">Production Date</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.ProductionDate)</dd>
+
+                <dt class="col-sm-4">Farmer Email</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.Farmer.Email)</dd>
+            </dl>
+
+            <div class="mt-4">
+                <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-outline-gold me-2">Edit</a>
+                <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>

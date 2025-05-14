@@ -1,0 +1,88 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- Add this style block to your layout or directly on this page -->
+<style>
+    .card {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card-img-top {
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .card-body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+</style>
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to the Green Agriculture Hub</h1>
+    <p>Empowering farmers through sustainable practices, green energy, and educational resources to shape a greener future.</p>
+</div>
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-4 d-flex">
+            <div class="card h-100">
+                <img src="~/images/fahming.jpg" class="card-img-top" alt="Sustainable Farming">
+                <div class="card-body">
+                    <h5 class="card-title">Sustainable Farming Hub</h5>
+                    <p class="card-text">A resource centre for sustainable farming practices, including organic farming, water conservation, and soil health.</p>
+                    <p class="text-muted">Coming Soon</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 d-flex">
+            <div class="card h-100">
+                <img src="~/images/greenenergy.jpg" class="card-img-top" alt="Green Energy">
+                <div class="card-body">
+                    <h5 class="card-title">Green Energy Marketplace</h5>
+                    <p class="card-text">Explore green energy solutions for agricultural needs, such as solar irrigation systems and wind turbines for farms.</p>
+                    <p class="text-muted">Coming Soon</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 d-flex">
+            <div class="card h-100">
+                <img src="~/images/education.jpg" class="card-img-top" alt="Educational Resources">
+                <div class="card-body">
+                    <h5 class="card-title">Educational & Training Resources</h5>
+                    <p class="card-text">Join online courses, webinars, and workshops on integrating renewable energy technologies in agriculture.</p>
+                    <p class="text-muted">Coming Soon</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <h2>Past Projects</h2>
+    <div class="row">
+        <div class="col-md-6 d-flex">
+            <div class="card h-100">
+                <img src="~/images/solar irrigation.jpg" class="card-img-top" alt="Project 1">
+                <div class="card-body">
+                    <h5 class="card-title">Solar Irrigation System</h5>
+                    <p class="card-text">A successful project installing solar-powered irrigation systems in remote farming communities, reducing energy costs.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 d-flex">
+            <div class="card h-100">
+                <img src="~/images/turbine.jpg" class="card-img-top" alt="Project 2">
+                <div class="card-body">
+                    <h5 class="card-title">Wind Turbine Installation</h5>
+                    <p class="card-text">Our collaboration with local farms to implement wind turbine solutions, providing sustainable energy sources for their operations.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+﻿@model AgriEnergyConnects.Models.Product
+
+@{
+    ViewData["Title"] = "Edit Product";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg border-0">
+        <div class="card-header bg-gold text-dark">
+            <h3 class="mb-0">✏️ Edit Product</h3>
+        </div>
+        <div class="card-body bg-white text-dark">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                <input type="hidden" asp-for="Id" />
+
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label fw-semibold"></label>
+                    <input asp-for="Name" class="form-control bg-light text-dark" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Category" class="form-label fw-semibold"></label>
+                    <input asp-for="Category" class="form-control bg-light text-dark" />
+                    <span asp-validation-for="Category" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="ProductionDate" class="form-label fw-semibold"></label>
+                    <input asp-for="ProductionDate" class="form-control bg-light text-dark" />
+                    <span asp-validation-for="ProductionDate" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="FarmerId" class="form-label fw-semibold"></label>
+                    <select asp-for="FarmerId" class="form-select bg-light text-dark" asp-items="ViewBag.FarmerId"></select>
+                    <span asp-validation-for="FarmerId" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-gold">💾 Save</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,59 @@
+﻿@model FarmerCreateViewModel
+
+@{
+    ViewData["Title"] = "Create Farmer with Account";
+}
+
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-header bg-info text-white">
+            <h3 class="mb-0">👤 Create Farmer With Login</h3>
+        </div>
+        <div class="card-body">
+            <form asp-action="CreateNewWithAccount" method="post">
+                <div class="mb-3">
+                    <label class="form-label">Full Name</label>
+                    <input asp-for="FullName" class="form-control" required />
+                    <span class="text-danger" asp-validation-for="FullName"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Phone Number</label>
+                    <input asp-for="PhoneNumber" class="form-control" value="000-000-0000" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input asp-for="Email" class="form-control" required />
+                    <span class="text-danger" asp-validation-for="Email"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Location</label>
+                    <input asp-for="Location" class="form-control" value="Unknown Location" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Select User</label>
+                    <select asp-for="UserId" asp-items="Model.Users" class="form-select" required>
+                        <option value="">-- Select User --</option>
+                    </select>
+                    <span class="text-danger" asp-validation-for="UserId"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary">🚀 Create Farmer</button>
+            </form>
+
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success mt-3">
+                    ✅ @TempData["Success"]
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
